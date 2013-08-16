@@ -10,7 +10,7 @@ class WidgetRegistry():
     def get(self, name):
         return self.widgets[name]
 
-    def get_by_channel(self, channel_name):
-        return [self.widgets[i] for i in self.widgets if self.widgets[i].channel == channel_name]
+    def get_by_block(self, block_name):
+        return [self.widgets[i] for i in self.widgets if self.widgets[i].block == block_name]
 
 registry = WidgetRegistry()

@@ -4,7 +4,7 @@ from django.template.loader import get_template
 
 class Widget():
     template = None
-    channel = None
+    block = None
     priority = 100
 
     def __init__(self, *args, **kwargs):

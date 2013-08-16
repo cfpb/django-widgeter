@@ -11,7 +11,7 @@ Features
 
 - Creation of custom widgets in reusable apps
 - Rendering of widgets by name
-- Rendering of widget channels without previous knowledge of widget names
+- Rendering of widget blocks without previous knowledge of widget names
 - Autodiscovery of widgets from all installed apps
 
 
@@ -73,19 +73,19 @@ You can also pass variables to your widget:
 ```
 
 
-Using Channels
+Using Blocks
 -----------------
 
-Widget channels allow you to render widgets without previously knowing the names for them.
-The autodiscovery process will add them to the registry and you can the look them up by channel name.
+Widget blocks allow you to render widgets without previously knowing the names for them.
+The autodiscovery process will add them to the registry and you can the look them up by block name.
 Priorities can also be assigned to render them in order.
 
-- First define a channel on the widget:
+- First define a block on the widget:
   ```
     from widgeter.base import Widget
     
     class HelloWorld(Widget):
-        channel = 'home'
+        block = 'home'
         priority = '1'
         template = 'hello_world/widget.html'
 
@@ -93,10 +93,10 @@ Priorities can also be assigned to render them in order.
             return { 'message': u'Hello World!' }
   ```
 
-- Then, on the template, use the `widget_channel` tag:
+- Then, on the template, use the `widget_block` tag:
   ```
     {% load widgeter %}
-    {% widget_channel "home" current_user %}
+    {% widget_block "home" current_user %}
   ```
 
 Running the Tests

@@ -20,23 +20,23 @@ class RegistryTest(TestCase):
         with self.assertRaises(KeyError):
             registry.register('widget', widget)
 
-    def test_get_by_channel(self):
+    def test_get_by_block(self):
         class Test1(Widget):
-            channel = 'testing'
+            block = 'testing'
         test1 = Test1()
         registry.register('test1', test1)
 
         class Test2(Widget):
-            channel = 'not_testing'
+            block = 'not_testing'
         test2 = Test2()
         registry.register('test2', test2)
 
         class Test3(Widget):
-            channel = 'testing'
+            block = 'testing'
         test3 = Test3()
         registry.register('test3', test3)
 
-        widgets = registry.get_by_channel('testing')
+        widgets = registry.get_by_block('testing')
 
         self.assertIn(test1, widgets)
         self.assertNotIn(test2, widgets)
@@ -61,16 +61,16 @@ class TemplateTagTest(TestCase):
         
         self.assertIn('Hello world!', out)
 
-    def test_widget_channel(self):
+    def test_widget_block(self):
         class HelloWorld(Widget):
-            channel = "testing"
+            block = "testing"
             def render(self, context, options):
                 return u'Hello world!'
 
         registry.register('helloworld', HelloWorld())
 
         class FooBar(Widget):
-            channel = "not_testing"
+            block = "not_testing"
             def render(self, context, options):
                 return u'Bye bye world!'
 
@@ -79,7 +79,7 @@ class TemplateTagTest(TestCase):
 
         out = Template(
             "{% load widgeter %}"
-            "{% widget_channel \"testing\" %}"
+            "{% widget_block \"testing\" %}"
             ).render(Context())
         
         self.assertIn('Hello world!', out)

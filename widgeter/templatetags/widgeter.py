@@ -31,7 +31,7 @@ def widget(parser, token):
     return WidgetNode(name[1:-1], opt_var)
 
 
-class WidgetChannelNode(Node):
+class WidgetBlockNode(Node):
     def __init__(self, name, opt_var):
         self.name = name
         self.opt_var = opt_var
@@ -39,7 +39,7 @@ class WidgetChannelNode(Node):
     def render(self, context):
         if self.opt_var:
             self.opt_var = Variable(self.opt_var).resolve(context)
-        widgets = registry.get_by_channel(self.name)
+        widgets = registry.get_by_block(self.name)
         output = ""
         for widget in widgets:
             output += widget.render(context, self.opt_var)
@@ -47,8 +47,8 @@ class WidgetChannelNode(Node):
         return output
 
 
-@register.tag(name='widget_channel')
-def widget_channel(parser, token):
+@register.tag(name='widget_block')
+def widget_block(parser, token):
     opts = token.split_contents()
     if len(opts) < 2:
         raise template.TemplateSyntaxError("%r tag requires at least one argument" % token.contents.split()[0])
@@ -60,4 +60,4 @@ def widget_channel(parser, token):
         opt_var = opts[2]
     except:
         opt_var = None
-    return WidgetChannelNode(name[1:-1], opt_var)
+    return WidgetBlockNode(name[1:-1], opt_var)
