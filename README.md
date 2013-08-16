@@ -1,0 +1,111 @@
+[![Build Status](https://travis-ci.org/dlapiduz/django-widgeter.png?branch=master)](https://travis-ci.org/dlapiduz/django-widgeter)
+
+Widgeter
+========================
+
+A simple engine for django backend widgets based on https://github.com/marcinn/django-widgets.
+
+
+Features
+-----------------
+
+- Creation of custom widgets in reusable apps
+- Rendering of widgets by name
+- Rendering of widget channels without previous knowledge of widget names
+- Autodiscovery of widgets from all installed apps
+
+
+Installation
+-----------------
+
+1. Install the package using `pip install django-widgeter`
+1. Add `widgeter` to your `INSTALLED_APPS` in `settings.py`
+
+
+Defining a Widget
+-----------------
+
+Add a `widgets.py` file on your application with the following statements.
+
+- Widgets can be defined with a template (and optionally a context):
+  ```
+    from widgeter.base import Widget
+    
+    class HelloWorld(Widget):
+        template = 'hello_world/widget.html'
+
+        def get_context(self, context, options=None):
+            return { 'message': u'Hello World!' }
+  ```
+
+  or with a render function:
+  ```
+    from widgeter.base import Widget
+    
+    class HelloWorld(Widget):
+        def render(self, context, options=None):
+            return u'Hello world!'
+
+  ```
+- Register your widget:
+  ```
+    from widgeter.registry import registry
+
+    registry.register('hello_world', HelloWorld())
+  ```
+
+
+Rendering a Widget
+-----------------
+
+On a template you first have to load the template tags and then render the particular widget:
+
+```
+  {% load widgeter %}
+  {% widget "hello_world" %}
+```
+
+You can also pass variables to your widget:
+
+```
+  {% load widgeter %}
+  {% widget "hello_world" current_user %}
+```
+
+
+Using Channels
+-----------------
+
+Widget channels allow you to render widgets without previously knowing the names for them.
+The autodiscovery process will add them to the registry and you can the look them up by channel name.
+Priorities can also be assigned to render them in order.
+
+- First define a channel on the widget:
+  ```
+    from widgeter.base import Widget
+    
+    class HelloWorld(Widget):
+        channel = 'home'
+        priority = '1'
+        template = 'hello_world/widget.html'
+
+        def get_context(self, context, options=None):
+            return { 'message': u'Hello World!' }
+  ```
+
+- Then, on the template, use the `widget_channel` tag:
+  ```
+    {% load widgeter %}
+    {% widget_channel "home" current_user %}
+  ```
+
+Running the Tests
+------------------------------------
+
+You can run the tests with via::
+
+    python setup.py test
+
+or::
+
+    python runtests.py
