@@ -14,14 +14,14 @@ def read_file(filename):
 
 setup(
     name='django-widgeter',
-    version=__import__('widgeter').__version__,
+    version='0.1',
     author='Diego Lapiduz',
     author_email='diego@lapiduz.com',
     packages=find_packages(),
     include_package_data=True,
     url='http://github.com/dlapiduz/django-widgeter',
     license='Public Domain',
-    description=u' '.join(__import__('widgeter').__doc__.splitlines()).strip(),
+    description=u'Widgeter: A simple engine for backend widgets',
     classifiers=[
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
         'Intended Audience :: Developers',
@@ -32,7 +32,7 @@ setup(
         'Development Status :: 4 - Beta',
         'Operating System :: OS Independent',
     ],
-    long_description=read_file('README.rst'),
+    long_description=read_file('README.md'),
     test_suite="runtests.runtests",
     zip_safe=False,
 )

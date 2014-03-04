@@ -1,7 +1,3 @@
-"Widgeter: A simple engine for backend widgets"
-
-__version__ = '0.0.1'
-
 from django.conf import settings
 
 
