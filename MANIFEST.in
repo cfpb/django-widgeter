@@ -1,5 +1,4 @@
 include AUTHORS
-include LICENSE
-include README.rst
-recursive-include {{ app_name }}/static *
-recursive-include {{ app_name }}/templates *
+include TERMS.md
+include COPYING.txt
+include README.md
