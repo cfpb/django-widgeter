@@ -17,6 +17,7 @@ class WidgetNode(Node):
 
 @register.tag(name='widget')
 def widget(parser, token):
+    """Render a single widget by name"""
     opts = token.split_contents()
     if len(opts) < 2:
         raise template.TemplateSyntaxError("%r tag requires at least one argument" % token.contents.split()[0])
@@ -49,6 +50,7 @@ class WidgetBlockNode(Node):
 
 @register.tag(name='widget_block')
 def widget_block(parser, token):
+    """Render all the widgets in a given block"""
     opts = token.split_contents()
     if len(opts) < 2:
         raise template.TemplateSyntaxError("%r tag requires at least one argument" % token.contents.split()[0])

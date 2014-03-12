@@ -3,7 +3,12 @@
 Widgeter
 ========================
 
-A simple engine for django backend widgets based on https://github.com/marcinn/django-widgets.
+A simple engine for django backend widgets.
+
+Widgets are snippets of code that render into a template. They can be used when you need to include a template with
+a context that is not available in the front end.
+
+Moreover, widgets can be added by reusable apps without the need for the main project to know what their requirements are.
 
 
 Features
@@ -29,7 +34,7 @@ Add a `widgets.py` file on your application with the following statements.
 
 - Widgets can be defined with a template (and optionally a context):
   ```
-    from widgeter.base import Widget
+    from widgeter.core import Widget
     
     class HelloWorld(Widget):
         template = 'hello_world/widget.html'
@@ -40,7 +45,7 @@ Add a `widgets.py` file on your application with the following statements.
 
   or with a render function:
   ```
-    from widgeter.base import Widget
+    from widgeter.core import Widget
     
     class HelloWorld(Widget):
         def render(self, context, options=None):
@@ -82,7 +87,7 @@ Priorities can also be assigned to render them in order.
 
 - First define a block on the widget:
   ```
-    from widgeter.base import Widget
+    from widgeter.core import Widget
     
     class HelloWorld(Widget):
         block = 'home'
@@ -109,3 +114,8 @@ You can run the tests with via::
 or::
 
     python runtests.py
+
+
+Inspiration
+--------------
+This project is based on https://github.com/marcinn/django-widgets but updated for new versions of Django.

@@ -1,6 +1,6 @@
 from django.test import TestCase
 from widgeter.registry import registry
-from widgeter.base import Widget
+from widgeter.core import Widget
 from django.template import Template, Context, TemplateSyntaxError
 
 
