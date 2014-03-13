@@ -3,6 +3,7 @@ from django.template.loader import get_template
 
 
 class Widget():
+    """Core class for widgeter. All widgets will extend this class."""
     template = None
     block = None
     priority = 100
@@ -21,7 +22,7 @@ class Widget():
         The `template` variable can be set to a file path,
         `template_instance` to a loaded instance of a template,
         or the whole method can be patched to return something else.
-        """ 
+        """
         if not self.template_instance:
             if not self.template:
                 raise RuntimeError('Abstract method Widget.render()\

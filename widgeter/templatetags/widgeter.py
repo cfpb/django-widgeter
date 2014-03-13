@@ -5,6 +5,7 @@ register = Library()
 
 
 class WidgetNode(Node):
+    """Django template node to render a single widget"""
     def __init__(self, name, opt_var):
         self.name = name
         self.opt_var = opt_var
@@ -33,6 +34,7 @@ def widget(parser, token):
 
 
 class WidgetBlockNode(Node):
+    """Django template node to render a widget block"""
     def __init__(self, name, opt_var):
         self.name = name
         self.opt_var = opt_var
