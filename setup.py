@@ -14,7 +14,7 @@ def read_file(filename):
 
 setup(
     name='django-widgeter',
-    version='0.1',
+    version='0.1.0',
     author='Diego Lapiduz',
     author_email='diego@lapiduz.com',
     packages=find_packages(),
